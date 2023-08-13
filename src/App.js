@@ -1,64 +1,94 @@
 import React from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const App = () => {
+  const formik = useFormik({
+    initialValues: {
+      first_name: "",
+      last_name: "",
+      email: "",
+    },
+    validationSchema: Yup.object({
+      first_name: Yup.string().required("First name is required."),
+      last_name: Yup.string().required("Last name is required."),
+      email: Yup.string()
+        .email("Please provide a valid email address")
+        .required("Email is required."),
+    }),
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center bg-slate-200 px-4">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full md:w-96 ">
-        <h1 className="text-center text-2xl my-6 font-bold">Sign up!!</h1>
-        <div className="mb-4 w-full">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="first_name"
-          >
-            First Name
-          </label>
+    <div className="container">
+      <form onSubmit={formik.handleSubmit}>
+        <h1 className="">Sign up!!</h1>
+        <div className="form_input_container">
+          <label htmlFor="first_name">First Name</label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={`form_input ${
+              formik.touched.first_name &&
+              formik.errors.first_name &&
+              "error-input"
+            }`}
             id="first_name"
             type="text"
             placeholder="Enter your first name"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.first_name}
           />
+          {formik.touched.first_name && formik.errors.first_name && (
+            <p className="error-text">{formik.errors.first_name}</p>
+          )}
         </div>
-        <div className="mb-4 w-full">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="first_name"
-          >
-            Last Name
-          </label>
+        <div className="form_input_container">
+          <label htmlFor="first_name">Last Name</label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={`form_input ${
+              formik.touched.last_name &&
+              formik.errors.last_name &&
+              "error-input"
+            }`}
             id="last_name"
             type="text"
             placeholder="Enter your last name"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.last_name}
           />
+          {formik.touched.last_name && formik.errors.last_name && (
+            <p className="text-red-500 text-xs italic">
+              {formik.errors.last_name}
+            </p>
+          )}
         </div>
-        <div className="mb-4 w-full">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="first_name"
-          >
-            Email Address
-          </label>
+        <div className="form_input_container">
+          <label htmlFor="email">Email Address</label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={`form_input ${
+              formik.touched.email && formik.errors.email && "error-input"
+            }`}
             id="email"
-            type="text"
+            type="email"
             placeholder="Enter your email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email_name}
           />
+          {formik.touched.email && formik.errors.email && (
+            <p class="error-text">{formik.errors.email}</p>
+          )}
         </div>
-        <div className="flex items-center justify-between mt-10">
-          <button
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
+        <div className="form_btn_container">
+          <button className="btn" type="submit">
             Sign In
           </button>
         </div>
       </form>
-      <p className="text-center text-gray-500 text-xs">
-        &copy;2020 All rights reserved.
-      </p>
+      <p>&copy;2023 All rights reserved.</p>
     </div>
   );
 };
