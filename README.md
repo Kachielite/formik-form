@@ -38,21 +38,6 @@ cd formik-yup-forms-guide
 git checkout completed-form
 ```
 
-
-## Article Sections
-
-The repository is organized according to the sections of the article "Effortless Form Handling with Formik and Yup in React: A Comprehensive Guide". Here's a quick overview of the sections and their corresponding directories:
-
-- **`section-1`**: Introduction
-- **`section-2`**: Setting Up Formik and Yup
-- **`section-3`**: Creating Your First Form
-- **`section-4`**: Form Validation with Yup
-- **`section-5`**: Handling Form Submission
-- **`section-6`**: Conclusion
-- **`section-7`**: Additional Resources
-
-Each section directory contains code examples and resources related to that specific part of the article.
-
 ## Additional Resources
 
 For further learning and exploration, consider checking out these additional resources:
